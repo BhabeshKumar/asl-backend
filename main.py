@@ -8,7 +8,7 @@ from symspellpy import SymSpell
 import time
 import os
 from fastapi.middleware.cors import CORSMiddleware
-from gingerit.gingerit import GingerIt
+from gingerit import GingerIt
 ginger = GingerIt()
 app = FastAPI()
 
