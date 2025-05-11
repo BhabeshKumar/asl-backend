@@ -4,7 +4,7 @@ from pydantic import BaseModel
 import torch
 import torch.nn.functional as F
 from symspellpy import SymSpell
-import language_tool_python
+
 import time
 import os
 from fastapi.middleware.cors import CORSMiddleware
