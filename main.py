@@ -8,7 +8,8 @@ import language_tool_python
 import time
 import os
 from fastapi.middleware.cors import CORSMiddleware
-
+from gingerit.gingerit import GingerIt
+ginger = GingerIt()
 app = FastAPI()
 
 app.add_middleware(
@@ -73,6 +74,8 @@ def merge_single_letters(words):
         merged.append(buffer)
     return merged
 
+
+
 def smart_correct(sentence):
     s = sentence.strip()
     if not s or len(s) < 3:
@@ -88,10 +91,12 @@ def smart_correct(sentence):
         suggestions = sym_spell.lookup_compound(joined_input.lower(), max_edit_distance=2)
         result = suggestions[0].term if suggestions else joined_input
 
-        corrected = lt_tool.correct(result)
+        corrected = ginger.parse(result.lower())["result"]
         return corrected[0].upper() + corrected[1:] if corrected else result
-    except:
+    except Exception as e:
+        print("❌ Correction error:", e)
         return sentence
+
 
 @app.post("/predict")
 def predict(req: InferenceRequest):
