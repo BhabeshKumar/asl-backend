@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+torch
+symspellpy
+transformers
+sentencepiece
+git+https://github.com/PrithivirajDamodaran/Gramformer.git
